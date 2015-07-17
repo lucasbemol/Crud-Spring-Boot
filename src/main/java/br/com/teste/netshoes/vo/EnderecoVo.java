@@ -1,5 +1,7 @@
 package br.com.teste.netshoes.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class EnderecoVo {
 	private String cep;
 	private String rua;
@@ -13,9 +15,11 @@ public class EnderecoVo {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	@JsonProperty("rua")
 	public String getRua() {
 		return rua;
 	}
+	@JsonProperty("logradouro")
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
