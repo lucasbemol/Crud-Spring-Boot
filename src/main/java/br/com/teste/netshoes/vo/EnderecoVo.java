@@ -1,7 +1,10 @@
 package br.com.teste.netshoes.vo;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Component
 public class EnderecoVo {
 	private String cep;
 	private String rua;
