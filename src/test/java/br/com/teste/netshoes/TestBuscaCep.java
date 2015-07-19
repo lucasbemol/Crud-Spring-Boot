@@ -11,15 +11,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import br.com.teste.netshoes.exceptions.EnderecoException;
-import br.com.teste.netshoes.vo.EnderecoVo;
+import br.com.teste.netshoes.entity.Endereco;
 
 import com.google.gson.Gson;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,7 +35,7 @@ public class TestBuscaCep {
 
 	@Test
 	 public void testBuscarCepDePrimeira() throws Exception {
-	        EnderecoVo vo = new EnderecoVo();
+	        Endereco vo = new Endereco();
 	        vo.setCep("09951380");
 	        Gson gson = new Gson();
 	        String json = gson.toJson(vo);
@@ -50,8 +48,8 @@ public class TestBuscaCep {
 	 }
 	
 	@Test
-	 public void testBuscarCepVariasTentativasColocando0() throws Exception {
-	        EnderecoVo vo = new EnderecoVo();
+	 public void testBuscarCepVariasTentativasColocando0ECepNaoEncontrado() throws Exception {
+	        Endereco vo = new Endereco();
 	        vo.setCep("11111111");
 	        Gson gson = new Gson();
 	        String json = gson.toJson(vo);
@@ -59,32 +57,46 @@ public class TestBuscaCep {
 	        this.mockMvc.perform(get("/buscarCepJson")
 	        		.contentType(MediaType.APPLICATION_JSON)
 	        		.content(json))
-	            .andExpect(status().isOk());
+	            .andExpect(status().isInternalServerError());
+	    }
+	
+	@Test
+	 public void testBuscarCepVariasTentativasColocando0() throws Exception {
+	        Endereco vo = new Endereco();
+	        vo.setCep("09951385");
+	        Gson gson = new Gson();
+	        String json = gson.toJson(vo);
+	        
+	        this.mockMvc.perform(get("/buscarCepJson")
+	        		.contentType(MediaType.APPLICATION_JSON)
+	        		.content(json))
+	            .andExpect(status().isOk())
+	            .andExpect(jsonPath("$.cep" , is("09951380")));
 	    }
 	
 	@Test
 	 public void testBuscarCepInvalidoException() throws Exception {
-	        EnderecoVo vo = new EnderecoVo();
+	        Endereco vo = new Endereco();
 	        vo.setCep("023");
 	        Gson gson = new Gson();
 	        String json = gson.toJson(vo);
 	        
 	        this.mockMvc.perform(get("/buscarCepJson")
 	        		.contentType(MediaType.APPLICATION_JSON)
-	        		.content(json));
-	            //.andExpect(status().isInternalServerError());
+	        		.content(json))
+	            	.andExpect(status().isInternalServerError());
 	 }
 	
 	@Test
 	 public void testBuscarCepVazioException() throws Exception {
-	        EnderecoVo vo = new EnderecoVo();
+	        Endereco vo = new Endereco();
 	        vo.setCep("");
 	        Gson gson = new Gson();
 	        String json = gson.toJson(vo);
 	        
 	        this.mockMvc.perform(get("/buscarCepJson")
 	        		.contentType(MediaType.APPLICATION_JSON)
-	        		.content(json));
-	            //.andExpect(status().isInternalServerError());
+	        		.content(json))
+	            .andExpect(status().isInternalServerError());
 	    }
 }

@@ -2,26 +2,26 @@ package br.com.teste.netshoes.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.teste.netshoes.exceptions.EnderecoException;
+
 
 public class Util {
-	public static boolean validar(String cep) {
-		boolean valid = true;
-		
+	public static boolean validar(String cep) throws EnderecoException {
 		if (StringUtils.isBlank(cep)) {
-			valid = false;
+			throw new EnderecoException("CEP invalido");
 		}
 
 		if ("00000000".equals(cep)) {
-			valid = false;
+			throw new EnderecoException("CEP invalido");
 		}
 
 		if (cep.contains("-")) {
-			valid = false;
+			throw new EnderecoException("CEP invalido");
 		}
 
 		if (!cep.matches("\\d{8}")) {
-			valid = false;
+			throw new EnderecoException("CEP invalido");
 		}
-		return valid;
+		return true;
 	}
 }
