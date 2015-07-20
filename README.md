@@ -23,7 +23,7 @@
 - Para o Crud utilizei HSQLDB como base, o Spring Boot configura automaticamente essa base, basta colocar a dependecia no arquivo POM, facilitando e agilizando o desenvolvimento.
 
 # Questão 1 - Expor um servico de Busca de CEP
-Na classe EnderecoController temos o método GET buscarCep, onde passamos um JSON ex: {cep:09951380}.
+Na classe EnderecoController temos o método GET buscarCep, onde passamos um JSON ex: {"cep":"09951380"}.
 Validamos o CEP, e sendo válido chamos o método buscarCep em nosso serviço(classe EnderecoService).
 Essa classe é a responsavel pelo algorítimo de busca de CEP descrito na questão, caso não encontre vai subtituindo cada número por 0 do final para o início.
 
@@ -40,7 +40,7 @@ Classe de Teste: TestCrudEndereco
 Quantidade de Testes: 13
 
 # Questão 3- Dada uma stream, encontrar o primeiro caractere que não se repita no resto da stream
-Para esse algorítimo utilizo uma implementação da interface Set<> (pois ela não permite adicionar um item repetido, oque facilita o desenvolvimento do algorítimo sem deixar a performance) com apenas 1 loop, utilizo uma lista auxiliar do tipo List<> aonde adiciono os caracteres que não se repetem, e por último devolvo o primeiro caracter que não se repete no restante da stream.
+Para esse algorítimo utilizo uma implementação da interface Set<> (pois ela não permite adicionar um item repetido, oque facilita o desenvolvimento do algorítimo sem deixar a performance) com apenas 1 loop, utilizo uma lista auxiliar do tipo List<> onde adiciono os caracteres que não se repetem, e por último devolvo o primeiro caracter que não se repete no restante da stream.
 A classe que implementa o algorítimo é EncontraChar, com o método firstChar.
 
 Classe de Teste: TestStream
