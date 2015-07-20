@@ -47,3 +47,10 @@ Classe de Teste: TestStream
 Quantidade de Testes: 4
 
 # Questão 4- Quando digita a url (http://www.netshoes.com.br) explique oque acontece no protocolo HTTP(cliente e servidor)
+Quando digitamos a URL http://www.netshoes.com.br no browser os seguintes passos acontecem:
+
+- Ao digitarmos a ulr fazemos uma requisição GET seguindo o protocolo HTTP/1.1
+- Nessa requisição enviamos um cabeçalho(Header) contendo diversas informações, algumas delas são: tipo dos dados esperados no retorno Accept: text/xml,application/xml,application/xhtml+xml, Accept-Language: en-us,en;q=0.5, Accept-Encoding: gzip,deflate e muitos outros parametros.
+- Com essas informações o servidor consegue indentificar oque queremos, processa e devolve para o cliente(browser) um pacote com header e o corpo da resposta, nesse header temos: protocolo usado no browser, sucesso ou erro da solicitação(Ex 200 "Sucesso" ou 500 "Erro interno"), e o tipo do conteúdo que vai no corpo da resposta(Ex HTML).
+- O Cliente(browser) recebe esse pacote com sucesso, o navegador interpreta a resposta, processa e solicita os arquivos estáticos e recursos necessários para exibir o conteúdo, e para cada recurso necessário é feita uma nova solicitação ao servidor.
+- Ao término de todos os processos com sucesso, o cliente(browser) exibe a página ao usuário.
