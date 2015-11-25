@@ -1,4 +1,4 @@
-# Teste-Netshoes
+# Crud Spring Boot - Endereço
 
 # Tecnologias
 - JAVA 1.8
@@ -22,7 +22,7 @@
 
 - Para o Crud utilizei HSQLDB como base, o Spring Boot configura automaticamente essa base, basta colocar a dependecia no arquivo POM, facilitando e agilizando o desenvolvimento.
 
-# Questão 1 - Expor um servico de Busca de CEP
+# 1 - Expor um servico de Busca de CEP
 Na classe EnderecoController temos o método GET buscarCep, onde passamos um JSON ex: {"cep":"09951380"}.
 Validamos o CEP, e sendo válido chamos o método buscarCep em nosso serviço(classe EnderecoService).
 Essa classe é a responsavel pelo algorítimo de busca de CEP descrito na questão, caso não encontre vai subtituindo cada número por 0 do final para o início.
@@ -30,7 +30,7 @@ Essa classe é a responsavel pelo algorítimo de busca de CEP descrito na quest�
 Classe de Teste: TestBuscaCep
 Quantidade de Testes: 5
 
-# Questão 2- Salvar endereco de usuario, seguindo as regras de CRUD
+# 2- Salvar endereco de usuario, seguindo as regras de CRUD
 Todos os métodos CRUD estão na classe EnderecoController(consultar, atualizar, deletar e incluir).
 A validação do Cep na função buscaCep é feita na classe de serviço EnderecoService, a mesma é resposavel por todas as operações transacionais.
 O serviço implementa uma interface com toda a estrutura do crud e utiliza Spring JPA para realizar todas as operações no HSQLDB.
@@ -39,15 +39,15 @@ Todas as validações pedidas na questão são realizadas e as mensagens de erro
 Classe de Teste: TestCrudEndereco
 Quantidade de Testes: 13
 
-# Questão 3- Dada uma stream, encontrar o primeiro caractere que não se repita no resto da stream
+# 3- Dada uma stream, encontrar o primeiro caractere que não se repita no resto da stream
 Para esse algorítimo utilizo uma implementação da interface Set<> (pois ela não permite adicionar um item repetido, oque facilita o desenvolvimento do algorítimo sem deixar a performance) com apenas 1 loop, utilizo uma lista auxiliar do tipo List<> onde adiciono os caracteres que não se repetem, e por último devolvo o primeiro caracter que não se repete no restante da stream.
 A classe que implementa o algorítimo é EncontraChar, com o método firstChar.
 
 Classe de Teste: TestStream
 Quantidade de Testes: 4
 
-# Questão 4- Quando digita a url (http://www.netshoes.com.br) explique oque acontece no protocolo HTTP(cliente e servidor)
-Quando digitamos a URL http://www.netshoes.com.br no browser os seguintes passos acontecem:
+# 4- Quando digita a url, explique oque acontece no protocolo HTTP(cliente e servidor)
+Quando digitamos a URL http://www.lucasbemol.com.br no browser os seguintes passos acontecem:
 
 - Ao digitarmos a ulr fazemos uma requisição GET seguindo o protocolo HTTP/1.1
 - Nessa requisição enviamos um cabeçalho(Header) contendo diversas informações, algumas delas são: tipo dos dados esperados no retorno Accept: text/xml,application/xml,application/xhtml+xml, Accept-Language: en-us,en;q=0.5, Accept-Encoding: gzip,deflate e muitos outros parametros.
